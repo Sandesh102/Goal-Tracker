@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+{% block start %}
+
+
+<div class="container" mt-5>
+ <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<h2>Add Goals</h2><hr>
+<div class="mb-3">
+<label for="exampleInputEmail1" class="form-label">Task Title</label>
+ <input name="title" required type="text" class="form-control">
+
+</div>
+<div class="mb-3">
+ <label for="exampleInputPassword1" class="form-label">Description</label>
+<textarea name="description" required class="form-control"></textarea>
+</div>
+ <div class="mb-3">
+ <label for="exampleInputEmail1" class="form-label">Deadline</label>
+ <input name="deadline" type="datetime-local" class="form-control">
+<br>
+ </div>
+<button type="submit" class="btn btn-primary" >Add Now</button>
+
+ </form>
+ <br>
+ <center><h2>Your Goals are listed below</h2><center>
+    <form method="GET" class="sorting-form">
+        <label for="sort">Sort By:</label>
+        <select id="sort" name="sort" onchange="this.form.submit()">
+            <option value="date_uploaded" {% if sort_by == 'date_uploaded' %}selected{% endif %}>Date Uploaded</option>
+            <option value="deadline" {% if sort_by == 'deadline' %}selected{% endif %}>Deadline</option>
+        </select>
+    </form>
+    
+    <table border="2" class="table table-primary table-striped-columns mt-3">
+       <thead>
+           <tr>
+               <th scope="col">Sn</th>
+               <th scope="col">Task Title</th>
+               <th scope="col">Description</th>
+               <th scope="col">Task Added on</th>
+               <th scope="col">Deadline</th>
+               <th scope="col">Completed?</th>
+               <th scope="col">Actions</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for i in work %}
+           <tr>
+               <th scope="row">{{ forloop.counter }}</th>
+               <td>{{ i.title }}</td>
+               <td>{{ i.description }}</td>
+               <td>{{ i.date_uploaded }}</td>
+               <td>{{ i.deadline }}</td>
+               <td><b><center>{{ i.complete }}<center></b><br>
+                   {% if not i.complete %}
+                   <a href="/completed/{{i.id}}/" class="btn btn-success mt-2" style="border-radius: 16px;">Click here if completed</a> </td>
+                   {% else %}
+                   <a href="/incompleted/{{i.id}}/" class="btn btn-danger mt-2" style="border-radius: 16px;">Click here if incomplete</a> </td>
+                   {% endif %}
+               <td> 
+                <a href="/delete/{{i.id}}/" class="btn btn-danger mt-2" style="border-radius: 16px; m-2">Delete</a> 
+                <a href="/update/{{i.id}}/" class="btn btn-success mt-2" style="border-radius: 16px;">Update</a> 
+              </td>
+           </tr>
+           {% endfor %}
+       </tbody>
+    </table>
+{% endblock %}

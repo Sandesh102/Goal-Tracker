@@ -1,0 +1,71 @@
+
+{% extends 'base.html' %}
+
+{%  block start %}
+<html>
+  <head>
+    {% load static %}
+<link rel="stylesheet" text="text/css" href="{% static '/todoapp/css/index_style.css' %}"/>
+  </head>
+  <body>
+<div id="up">
+    <h1>Welcome to Goal Tracker!</h1>
+    <h3>
+      Organize your tasks, manage your time, and boost your productivity
+    </h3>
+  </div>
+
+  <div id="middle">
+    <div class="m">
+      <img src="../static/images/home1.jpg" alt="Clock photo" />
+    </div>
+    <div class="middle-content">
+      <br /><br /><br />
+      <h2 id="a1">Don't forget to</h2>
+      <ul>
+        <li>
+          <h4>
+            Track your progress over time and see how close you are to
+            completing your goals.
+          </h4>
+        </li>
+        <li>
+          <h4>
+            Set short-term and long-term goals to help you stay focused.
+          </h4>
+        </li>
+        <li><h4>Set reminders for important deadlines.</h4></li>
+        <li>
+          <h4>
+            Limit distractions to maximize productivity during task
+            completion.
+          </h4>
+        </li>
+        <li>
+          <h4>
+            Stay consistent with daily habits that contribute to your goals..
+          </h4>
+        </li>
+        <li>
+          <h4>
+              Celebrate small wins to keep yourself motivated along the journey.
+          </h4>
+        </li>
+        <li>
+          <h4>
+              Avoid multitasking—focus on completing one task at a time for better results.
+          </h4>
+        </li>
+        <li>
+          <h4>
+              Track your progress visually using charts or progress bars to see how far you've come.
+          </h4>
+        </li>
+      </ul>
+    </div>
+    <div class="m">
+      <img src="../static/images/home2.jpg" alt="Clock photo" />
+    </div>
+  </div>
+</body>
+{% endblock %}
